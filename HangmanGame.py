@@ -53,9 +53,9 @@ def getGuessedWord(secretWord, lettersGuessed):
       what letters in secretWord have been guessed so far.
     '''
     final = ''
-    for i in range(len(secretWord)):
-        if secretWord[i] in lettersGuessed:
-            final += secretWord[i]
+    for i in secretWord:
+        if i in lettersGuessed:
+            final += i
         else:
             final += ' _'
 
@@ -72,11 +72,11 @@ def getAvailableLetters(lettersGuessed):
     import string
     alpha = string.ascii_lowercase
     final = ''
-    for i in range(len(alpha)):
-        if alpha[i] in lettersGuessed:
+    for i in alpha:
+        if i in lettersGuessed:
             ()
         else:
-            final += alpha[i]
+            final += i
 
     return final
 
