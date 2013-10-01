@@ -112,8 +112,8 @@ class ResistantVirus(SimpleVirus):
         maxBirthProb and clearProb values as this virus. Raises a
         NoChildException if this virus particle does not reproduce.
         """
-        for i in range(len(activeDrugs)):
-            if self.isResistantTo(activeDrugs[i]) == False:
+        for drug in activeDrugs:
+            if self.isResistantTo(drug) == False:
                 raise NoChildException
         
         resistances = self.getResistances()
