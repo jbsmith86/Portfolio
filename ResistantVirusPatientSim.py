@@ -198,15 +198,15 @@ class TreatedPatient(Patient):
             return len(self.viruses)
         druglist2 = drugResist[1:]
         virlist = []
-        for i in range(len(self.viruses)):
-                if self.viruses[i].isResistantTo(drugResist[0]):
-                    virlist.append(self.viruses[i])
+        for virus in self.viruses:
+                if virus.isResistantTo(drugResist[0]):
+                    virlist.append(virus)
             
-        for k in range(len(druglist2)):
+        for i in druglist2:
             tempvirlist = []
-            for j in range(len(virlist)):
-                if viruslist[j].isResistantTo(druglist2[k]):
-                    tempvirlist.append(virlist[j])
+            for j in virlist:
+                if j.isResistantTo(i):
+                    tempvirlist.append(j)
             virlist = tempvirlist
 
         return len(virlist)
@@ -233,17 +233,16 @@ class TreatedPatient(Patient):
         integer)
         """
         newlist = []
-        for i in range(len(self.getViruses())):
-            if self.getViruses()[i].doesClear() == False:
-                newlist.append(self.getViruses()[i])
+        for virus in self.getViruses():
+            if virus.doesClear() == False:
+                newlist.append(virus)
         self.viruses = newlist
 
         popdense = (self.getTotalPop()) / (self.getMaxPop())
         repoducelist = self.getViruses()
-        for k in range(len(repoducelist)):
+        for i in repoducelist:
             try:
-                new = repoducelist[k].reproduce(popdense, self.druglist)
-                self.viruses.append(new)
+                self.viruses.append(i.reproduce(popdense, self.druglist))
             except:
                 pass
         return self.getTotalPop()
