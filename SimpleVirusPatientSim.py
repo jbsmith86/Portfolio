@@ -122,17 +122,16 @@ class Patient(object):
         integer)
         """
         newlist = []
-        for i in range(len(self.getViruses())):
-            if self.getViruses()[i].doesClear() == False:
-                newlist.append(self.getViruses()[i])
+        for virus in self.getViruses():
+            if virus.doesClear() == False:
+                newlist.append(virus)
         self.viruses = newlist
 
         popdense = (self.getTotalPop()) / (self.getMaxPop())
         repoducelist = self.getViruses()
-        for k in range(len(repoducelist)):
+        for i in repoducelist:
             try:
-                new = repoducelist[k].reproduce(popdense)
-                self.viruses.append(new)
+                self.viruses.append(i.reproduce(popdense))
             except:
                 pass
         return self.getTotalPop()
