@@ -109,8 +109,8 @@ class RectangularRoom(object):
         returns: an integer
         """
         numcleaned = 0
-        for i in range(len(self.tiles)):
-                if self.tiles.values()[i] == True:
+        for i in self.tiles.values():
+                if i == True:
                     numcleaned += 1
         return numcleaned
         
@@ -261,8 +261,8 @@ def runSimulation(num_robots, speed, width, height, min_coverage, num_trials,
                 scores.append(count)
                 break
             else:
-                for k in range(len(robots)):
-                    robots[k].updatePositionAndClean()
+                for robot in robots:
+                    robot.updatePositionAndClean()
                 count += 1
     return sum(scores) / len(scores)
 
